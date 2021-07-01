@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEneteredAmount] = useState('');
@@ -28,8 +28,7 @@ const ExpenseForm = () => {
             date: new Date(enteredDate)
         }
 
-        console.log(expenseDate);
-        //two-way binding
+        props.onSaveExpenseData(expenseDate);
         setEnteredTitle('');
         setEneteredAmount('');
         setEnteredDate('');
@@ -49,7 +48,7 @@ const ExpenseForm = () => {
                 <label>Amount</label>
                 <input
                     type='number'
-                    value={enteredAmount} //two-way binding
+                    value={enteredAmount}
                     min="0.01"
                     step="0.01"
                     onChange={amountChangeHandler} />
